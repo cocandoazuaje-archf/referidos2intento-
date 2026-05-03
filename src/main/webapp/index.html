@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World! v1.10</h1>
-    </body>
+<html lang="es" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS Dependiente de CDN</title>
+
+  <!-- 🔴 DEPENDE DE ESTA URL -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    .box {
+      padding: 15px;
+      background: #f3f3f3;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body ng-controller="MainCtrl">
+
+  <h1>AngularJS depende del CDN</h1>
+
+  <div class="box">
+    <button ng-click="check()">
+      Probar AngularJS
+    </button>
+
+    <p>{{ message }}</p>
+  </div>
+
+  <script>
+    // Si AngularJS NO carga desde la URL, esto NO funciona
+    angular.module('app', [])
+      .controller('MainCtrl', function($scope) {
+
+        $scope.message = "";
+
+        $scope.check = function() {
+          $scope.message = "AngularJS está funcionando desde CDN 🚀";
+          alert("AngularJS ejecutado correctamente");
+        };
+
+      });
+  </script>
+
+</body>
 </html>
