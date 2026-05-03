@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mvn clean package
+asadmin --host localhost --port 4848 undeploy referidos2intento-1.0
+open http://localhost:4848/common/index.jsf
+xread "continuar ..." 
+asadmin deploy target/referidos2intento-1.0.war
+open http://localhost:4848/common/index.jsf
+
+

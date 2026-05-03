@@ -1,0 +1,235 @@
+<div class="wrapper wrapper-content animated fadeInLeft">
+    <div class="row">
+        <div  class="col-lg-12 text-center" ng-show="vm.mostrarLoading">
+            <img style="margin-bottom: 30px !important; height: 70px;" src="img/procesando2.gif" alt="">
+        </div>
+    </div>
+    <!-- primera carga de datos -->
+    <div class="row">
+        
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins border-danger">
+                <div class="ibox-title">
+                    <h5>Carga / Descarga de Datos</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="90%">Cargar Referencias</td>
+                                <td><button ng-click="vm.descargarPlantillaReferenciasCargaInicial()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="10%"> <div id="content_file2" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="read" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i> Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td width="90%">Descargar -> GENESIS</td>
+                                <td></td>
+                                <td width="10%"> <div id="content_file2" style="text-align: center;" flex layout="row">
+                                    <button ng-click="vm.DescargarReferidos()" class="btn btn-danger btn-block " type="button" value="">
+                                    <i class="fa fa-arrow-down"> </i> Descargar Archivo</button>
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td width="70%">Actualizar Datos de Referencias</td>
+                                <td><button ng-click="vm.descargarPlantillaReferenciasActualizar()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="30%"> <div id="content_file4" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="readdatosrefe" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i> Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins border-danger">
+                <div class="ibox-title">
+                    <h5>Actualizacion de Datos</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <!-- <th></th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="70%">Actualizar Datos Referidos para los "SI"</td>
+                                <td><button ng-click="vm.descargarPlantillaCargarLosSi()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="30%"> <div id="content_file3" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="readsi" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i>  Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td width="70%">Actualizar Datos Referidos para los "NO"</td>
+                                <td><button ng-click="vm.descargarPlantillaCargarLosNo()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="30%"> <div id="content_file4" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="readno" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i> Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>
+                            <!-- <tr>
+                                <td width="70%">Actualizar Datos Personales del Referidos</td>
+                                <td><button ng-click="vm.descargarPlantillaReferidosDatosPersonales()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="30%"> <div id="content_file4" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="readdatosref" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i> Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>  -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- primera carga de datos -->
+    <!-- segunda carga de datos -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins border-danger">
+                <div class="ibox-title">
+                    <h5>Datos de roles de usuario</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="70%">Carga de Roles de Usuario</td>
+                                <td><button ng-click="vm.descargarPlantillaCargarLosRoles()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="30%"> <div id="content_file3" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="readroles" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i>  Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins border-danger">
+                <div class="ibox-title">
+                    <h5>Datos de Ejecutivas</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="70%">Carga de Ejecutivas</td>
+                                <td><button ng-click="vm.descargarPlantillaCargarEjecutivas()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="30%"> <div id="content_file3" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="readeje" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i>  Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <!--separador-->
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins border-danger">
+                <div class="ibox-title">
+                    <h5>Datos de Sucursales</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="70%">Carga de Sucursales</td>
+                                <td><button ng-click="vm.descargarPlantillaCargarSucursales()" class="btn btn-success btn-block " ><i class="fa fa-file-text-o"> </i> Descargar plantilla</button></td>
+                                <td width="30%"> <div id="content_file3" style="text-align: center;" flex layout="row">
+                                    <label id="inputbutton" class="custom-file-upload" style="width: 100%">
+                                        <js-xls fd-input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class=" hidden upload " onread="readsucu" layout-align="center center" onerror="error"></js-xls>
+                                        <span class="btn btn-danger btn-block " type="button" value="">
+                                        <i class="fa fa-arrow-up"> </i>  Cargar Archivo</span>
+                                    </label>
+                                </div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- segunda carga de datos -->
+</div>

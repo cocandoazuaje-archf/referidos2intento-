@@ -1,0 +1,572 @@
+<div ng-show="vm.rollUsuario == 'usr' || vm.rollUsuario == 'ast'">
+    <div class="col-lg-6">
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab-1">Lista de Trabajo ({{vm.ReferenciasNoCerradas.length}})</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-2">Historico - Todo ({{vm.ReferenciasTodoEje.length}})</a></li>
+                <!-- <li class=""><a data-toggle="tab" href="#tab-3">Sin Exito</a></li> -->
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="ibox float-e-margins" style="border-left: 1px solid #76b900">
+                        <div class="ibox-title">
+                            <!-- <h5>Lista de Trabajo </h5> -->
+
+                            <div class="ibox-tools">
+                                <div style="margin-left: 10px">
+                                    <table width="100%" border="0">
+                                        <td width="90%">
+                                            <div class="input-group"><span class="input-group-btn"> <button ng-click="vm.limpiar(1)"
+                                                        title="Limpiar filtro ..." type="button" class="btn btn-default">x
+                                                    </button> </span><input width="100" ng-model="vm.filtroReferenciasNoCerradas" placeholder="Ingrese un valor para buscar ..." type="text" class="form-control"></div>
+                                        </td>
+                                        <td style="text-align: center;" width="10%"><button ng-click="vm.fExportarDatatablPantEje(1)" title="Exportar contenido de la tabla.." class="btn btn-success btn-circle"><i
+                                                    class="fa fa-download"> </i> </button></td>
+                                        <td style="text-align: center;" width="10%"><button ng-click="vm.fMostrarIngresarReferido()" title="Crear Referido" class="btn btn-primary btn-circle"><i class="fa fa-plus">
+                                                </i> </button></td>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class=" ibox-content" style="overflow-y: scroll;height: 600px;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(1,1)" class="btn btn-danger btn-outline btn-block"><i class="fa fa-sort-alpha-desc">
+                                                </i> Nombre</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(2,1)" class="btn btn-danger btn-outline btn-block"><i class="fa fa-sort-alpha-desc">
+                                                </i> Fecha</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(3,1)" class="btn btn-danger btn-outline btn-block"><i class="fa fa-sort-alpha-desc">
+                                                </i> Canal</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(4,1)" class="btn btn-danger btn-outline btn-block"><i class="fa fa-sort-alpha-desc">
+                                                </i> Status</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="ref in vm.ReferenciasNoCerradas | filter: vm.filtroReferenciasNoCerradas">
+                                        <td>{{ref.referidoId.nombre}}</td>
+                                        <td>{{ref.fecha | date:'MMM d, yyyy'}}</td>
+                                        <td><i class="fa fa-phone"> </i> {{ref.canalname}}
+                                        </td>
+                                        <td>
+                                            <button ng-click="vm.verificarBloqueo(ref, 1)" class="btn btn-success btn-outldine btn-block" type="button" style="color: {{ref.accionId.color}}; background: {{ref.accionId.colorb}};">
+                                                <i ng-if="ref.accionId.id == 1" class="fa fa-ellipsis-h"> </i>
+                                                <i ng-if="ref.accionId.id == 2" class="fa fa-thumbs-up"> </i>
+                                                <i ng-if="ref.accionId.id == 3" class="fa fa-clock-o"> </i>
+                                                <i ng-if="ref.accionId.id == 5" class="fa fa-headphones"> </i>
+                                                <i ng-if="ref.accionId.id == 6" class="fa fa-thumbs-down"> </i>
+                                                <i ng-if="ref.accionId.id == 7" class="fa fa-check-square-o"> </i>
+                                                <i ng-if="ref.accionId.id == 8" class="fa fa-handshake-o"> </i>
+                                                <i ng-if="ref.accionId.id == 9" class="fa fa-gears (alias)"> </i>
+                                                {{ref.accionId.nombre}}</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-2" class="tab-pane">
+                    <div class="ibox float-e-margins" style="border-left: 1px solid #76b900">
+                        <div class="ibox-title">
+                            <!-- <h5>Historico</h5> -->
+                            <div class="ibox-tools">
+                                <div style="margin-left: 10px">
+                                    <table width="100%" border="0">
+                                        <td width="90%">
+                                            <div class="input-group"><span class="input-group-btn"> <button ng-click="vm.limpiar(2)"
+                                                        title="Limpiar filtro ..." type="button" class="btn btn-default">x
+                                                    </button> </span><input ng-model="vm.filtroReferenciasTodoEje" placeholder="Ingrese un valor para buscar ..." type="text" class="form-control">
+                                        </td>
+                                        </div>
+                                        </td>
+                                        <td style="text-align: center;" width="10%">
+                                            <button ng-click="vm.fExportarDatatablPantEje(2)" title="Exportar contenido de la tabla.." class="btn btn-success btn-circle"><i
+                                            class="fa fa-download"> </i> </button></td>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" ibox-content" style="overflow-y: scroll;height: 600px;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(1,2)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Nombre</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(2,2)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Fecha</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(3,2)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Canal</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(4,2)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Status</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="ref in vm.ReferenciasTodoEje | filter: vm.filtroReferenciasTodoEje">
+                                        <td>{{ref.referidoId.nombre}}</td>
+                                        <td>{{ref.fecha | date:'MMM d, yyyy'}}</td>
+                                        <td><i class="fa fa-phone"> </i> {{ref.canalname}}
+                                        </td>
+                                        <td>
+                                            <button ng-click="vm.verificarBloqueo(ref, 1)" class="btn btn-success btn-outldine btn-block" type="button" style="color: {{ref.accionId.color}}; background: {{ref.accionId.colorb}};">
+                                            <i ng-if="ref.accionId.id == 1" class="fa fa-ellipsis-h"> </i>
+                                            <i ng-if="ref.accionId.id == 2" class="fa fa-thumbs-up"> </i>
+                                            <i ng-if="ref.accionId.id == 3" class="fa fa-clock-o"> </i>
+                                            <i ng-if="ref.accionId.id == 5" class="fa fa-headphones"> </i>
+                                            <i ng-if="ref.accionId.id == 6" class="fa fa-thumbs-down"> </i>
+                                            <i ng-if="ref.accionId.id == 7" class="fa fa-check-square-o"> </i>
+                                            <i ng-if="ref.accionId.id == 8" class="fa fa-handshake-o"> </i>
+                                            <i ng-if="ref.accionId.id == 9" class="fa fa-gears (alias)"> </i>
+                                            {{ref.accionId.nombre}}</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 ">
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab-21">Reagendados para hoy ({{vm.ReferenciasReagendadas.length}})</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-22">Reagendadas para todas las fechas ({{vm.ReferenciasReagendadasTodoEje.length}})</a></li>
+                <!-- <li class=""><a data-toggle="tab" href="#tab-3">Sin Exito</a></li> -->
+            </ul>
+            <div class="tab-content">
+                <div id="tab-21" class="tab-pane active">
+                    <!-- aqui el codigo -->
+                    <div class="ibox float-e-margins" style="border-left: 1px solid #f8ac59">
+                        <div class="ibox-title">
+                            <!-- <h5>Reprogramados para hoy</h5> -->
+                            <div class="ibox-tools">
+                                <div style="margin-left: 10px">
+                                    <table width="100%" border="0">
+                                        <td width="90%">
+                                            <div class="input-group"><span class="input-group-btn"> <button ng-click="vm.limpiar(3)"
+                                                    title="Limpiar filtro ..." type="button" class="btn btn-default">x
+                                                </button> </span><input ng-model="vm.filtroReferenciasReagendadas" placeholder="Ingrese un valor para buscar ..." type="text" class="form-control"></div>
+                                        </td>
+                                        <td style="text-align: center;" width="10%"><button ng-click="vm.fExportarDatatablPantEje(3)" title="Exportar contenido de la tabla.." class="btn btn-success btn-circle"><i
+                                                class="fa fa-download"> </i> </button></td>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-content" style="overflow-y: scroll;height: 600px;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(1,3)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Nombre</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(2,3)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Fecha</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(3,3)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Canal</button></th>
+                                        <th><button class="btn btn-danger btn-outline btn-block"> Status</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="ref in vm.ReferenciasReagendadas | filter: vm.filtroReferenciasReagendadas" style="background-color: {{ref.colorFondo}}">
+                                        <td>{{ref.referidoId.nombre}}</td>
+                                        <td>{{ref.fechaAccion | date:'MMM d, yyyy, HH:mm'}}</td>
+                                        <td><i class="fa fa-phone"> </i> {{ref.canalname}}
+                                        </td>
+                                        <td>
+                                            <button ng-click="vm.verificarBloqueo(ref, 2)" class="btn btn-success btn-outldine btn-block" type="button" style="color: {{ref.accionId.color}}; background: {{ref.accionId.colorb}};">
+                                            <i ng-if="ref.accionId.id == 1" class="fa fa-ellipsis-h"> </i>
+                                            <i ng-if="ref.accionId.id == 2" class="fa fa-thumbs-up"> </i>
+                                            <i ng-if="ref.accionId.id == 3" class="fa fa-clock-o"> </i>
+                                            <i ng-if="ref.accionId.id == 5" class="fa fa-headphones"> </i>
+                                            <i ng-if="ref.accionId.id == 6" class="fa fa-thumbs-down"> </i>
+                                            <i ng-if="ref.accionId.id == 7" class="fa fa-check-square-o"> </i>
+                                            <i ng-if="ref.accionId.id == 8" class="fa fa-handshake-o"> </i>
+                                            <i ng-if="ref.accionId.id == 9" class="fa fa-gears (alias)"> </i>
+                                            {{ref.accionId.nombre}}</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- aqui el codigo -->
+                </div>
+                <div id="tab-22" class="tab-pane">
+                    <!-- aqui el codigo -->
+                    <div class="ibox float-e-margins" style="border-left: 1px solid #f8ac59">
+                        <div class="ibox-title">
+                            <!-- <h5>Reprogramados - todo</h5> -->
+                            <div class="ibox-tools">
+                                <div style="margin-left: 10px">
+                                    <table width="100%" border="0">
+                                        <td width="90%">
+                                            <div class="input-group"><span class="input-group-btn"> <button ng-click="vm.limpiar(4)"
+                                                    title="Limpiar filtro ..." type="button" class="btn btn-default">x
+                                                </button> </span><input ng-model="vm.filtroReferenciasReagendadasTodoEje" placeholder="Ingrese un valor para buscar ..." type="text" class="form-control"></div>
+                                        </td>
+                                        <td style="text-align: center;" width="10%"><button ng-click="vm.fExportarDatatablPantEje(4)" title="Exportar contenido de la tabla.." class="btn btn-success btn-circle"><i
+                                                class="fa fa-download"> </i> </button></td>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-content" style="overflow-y: scroll;height: 600px;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(1,4)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Nombre</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(2,4)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Fecha</button></th>
+                                        <th><button title="Click para ordenar ..." ng-click="vm.ordenarTablaEje(3,4)" class="btn btn-danger btn-outline btn-block"><i
+                                                class="fa fa-sort-alpha-desc"> </i> Canal</button></th>
+                                        <th><button class="btn btn-danger btn-outline btn-block"> Status</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="ref in vm.ReferenciasReagendadasTodoEje | filter: vm.filtroReferenciasReagendadasTodoEje" style="background-color: {{ref.colorFondo}}">
+                                        <td>{{ref.referidoId.nombre}}</td>
+                                        <td>{{ref.fechaAccion | date:'MMM d, yyyy, HH:mm'}}</td>
+                                        <td><i class="fa fa-phone"> </i> {{ref.canalname}}
+                                        </td>
+                                        <td>
+                                            <button ng-click="vm.verificarBloqueo(ref, 2)" class="btn btn-success btn-outldine btn-block" type="button" style="color: {{ref.accionId.color}}; background: {{ref.accionId.colorb}};">
+                                            <i ng-if="ref.accionId.id == 1" class="fa fa-ellipsis-h"> </i>
+                                            <i ng-if="ref.accionId.id == 2" class="fa fa-thumbs-up"> </i>
+                                            <i ng-if="ref.accionId.id == 3" class="fa fa-clock-o"> </i>
+                                            <i ng-if="ref.accionId.id == 5" class="fa fa-headphones"> </i>
+                                            <i ng-if="ref.accionId.id == 6" class="fa fa-thumbs-down"> </i>
+                                            <i ng-if="ref.accionId.id == 7" class="fa fa-check-square-o"> </i>
+                                            <i ng-if="ref.accionId.id == 8" class="fa fa-handshake-o"> </i>
+                                            <i ng-if="ref.accionId.id == 9" class="fa fa-gears (alias)"> </i>
+                                             {{ref.accionId.nombre}}</button>
+                                            <!--  {{ ref.fechaAccion | date:'MMM d, yyyy - hh:mm'}}</button> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- aqui el codigo -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div ng-show="vm.rollUsuario == 'adm' || vm.rollUsuario == 'sup'">
+    <div style="" class="col-lg-12 text-center" ng-show="vm.mostrarLoading">
+        <img style="height: 70px; " src="img/procesando2.gif" alt="">
+    </div>
+    <!-- paneles -->
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins" style="border-left: 1px solid red">
+                    <div class="ibox-title">
+                        <span class="label label-danger pull-right" stydle="color: black !important; background: white !important">Total
+                            General</span>
+                        <h5>Total Referidos</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{vm.PanelTotales.total}}</h1>
+                        <div class="stat-percent font-bold text-b" style="color: black !important;">100% <i class="fa fa-boldt"></i></div>
+                        <small>Total</small>
+                    </div>
+                </div>
+            </div>
+            <!-- <div ng-show="false" class="col-lg-3"> -->
+            <div ng-show="vm.rollUsuario=='adm' && vm.dobleRoll==false" class="col-lg-3">
+                <div class="ibox float-e-margins" style="border-left: 1px solid red">
+                    <div class="ibox-title">
+                        <span class="label label-danger pull-right" stydle="color: black !important; background: white !important">Filtro</span>
+                        <h5>Seleccione Mes y/o Año</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-group" id="data_4" style="margin-bottom: 12px">
+                            <table width="100%">
+                                <td style="padding: 0 5px 0 5px">
+                                    <div class="input-group date">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="idMesAnioFiltroGraph" type="text" class="form-control" ng-model="vm.mesAnioFiltroGraph" ng-change="vm.actualizarGraficoPorFecha()">
+                                    </div>
+                                </td>
+                                <td style="padding: 0 5px 0 5px">
+                                    <div>
+                                        <button id="idLimpiarFecha" title="Limpiar filtro ..." ng-click="vm.mostrarTodo()" class="btn btn-danger btn-block"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div ng-show="false" class="col-lg-3"> -->
+            <div ng-show="vm.rollUsuario=='adm' && vm.dobleRoll==false" class="col-lg-3">
+                <div class="ibox float-e-margins" style="border-left: 1px solid red">
+                    <div class="ibox-title">
+                        <span class="label label-danger pull-right" stydle="color: black !important; background: white !important">Filtro</span>
+                        <h5>Seleccione un Ejecutivo</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-group" id="data_4" style="margin-bottom: 12px">
+                            <table width="100%">
+                                <td style="padding: 0 5px 0 5px">
+                                    <div class="  input-group ">
+                                        <select ng-change="vm.actualizarGraficoPorEjecutivo()" ng-model="vm.ejecutivosSelectFiltroPanel" class="form-control m-b" name="account">
+                                            <option ng-repeat="e in vm.ejecutivos" value={{e}}>{{e.nombre}}{{(e=='') ?
+                                                '' : ' -> '}}{{e.sucursalId.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td style="padding: 0 5px 0 5px">
+                                    <div>
+                                        <button id="idLimpiarEjecutivo" title="Limpiar filtro ..." ng-click="vm.mostrarTodoEjecutivosPanel()" class="btn btn-danger btn-block"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="vm.rollUsuario=='adm' && vm.dobleRoll==false" class="col-lg-3">
+                <div class="ibox float-e-margins" style="border-left: 1px solid red">
+                    <div class="ibox-title">
+                        <span class="label label-danger pull-right" stydle="color: black !important; background: white !important">Filtro</span>
+                        <h5>Susursal / Ejecutivo</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-group" id="data_4" style="margin-bottom: 12px">
+                            <table width="100%">
+                                <td style="padding: 0 5px 0 5px">
+                                    <div class="  input-group ">
+                                        <select ng-change="vm.actualizarGraficoPorSucursal()" ng-model="vm.sucursalesSelectFiltroPanel" class="form-control m-b" name="account">
+                                            <option ng-repeat="s in vm.sucursales" value={{s}}>{{s.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td style="padding: 0 5px 0 5px">
+                                    <div>
+                                        <button id="idLimpiarSucursal" title="Limpiar filtro ..." ng-click="vm.mostrarTodoSucursalesPanel()" class="btn btn-danger btn-block"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins border-danger">
+                    <div class="ibox-title">
+                        <h5>Estatus Referidos</h5>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="flot-chart" style="height: 264px">
+                                    <canvas id="lineChart" height="120"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <ul class="stat-list">
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por INICIADOS ..." ng-click="vm.filtrarDataTable(1)" href="#">
+                                            <h2 class="no-margins ">{{vm.PanelTotales.tinactividad}}</h2>
+                                            <small>TOTAL INICIADOS</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.pinactividad}}% <i class="fa fa-ledvel-down text-navy" tyle=""></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="background: {{vm.PanelTotales.colorbinactividad}}
+                                                    !important ;width: {{vm.PanelTotales.pinactividad}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por INTERESADO ..." ng-click="vm.filtrarDataTable(2)" href="#">
+                                            <h2 class="no-margins ">{{vm.PanelTotales.tinteresados}}</h2>
+                                            <small>TOTAL INTERESADO</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.pinteresados}}% <i class="fa fa-levedl-down text-navy" style=""></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="background: {{vm.PanelTotales.colorbinteresados}}
+                                                        !important ;width: {{vm.PanelTotales.pinteresados}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por REAGENDADO ..." ng-click="vm.filtrarDataTable(3)" href="#">
+                                            <h2 class="no-margins ">{{vm.PanelTotales.treagendados}}</h2>
+                                            <small>TOTAL REAGENDADO</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.preagendados}}% <i class="fa fa-levedl-down text-navy" style=""></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style=" background: {{vm.PanelTotales.colorbreagendados}}
+                                                            !important ;width: {{vm.PanelTotales.preagendados}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por DERIVADO ..." ng-click="vm.filtrarDataTable(4)" href="#">
+                                            <h2 class="no-margins ">{{vm.PanelTotales.tderivados}}</h2>
+                                            <small>TOTAL DERIVADO</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.pderivados}}% <i class="fa fa-levedl-down text-navy" style=""></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="background: {{vm.PanelTotales.colorbderivados}}
+                                                                !important ;width: {{vm.PanelTotales.pderivados}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3">
+                                <ul class="stat-list">
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por ATENDIDO ..." ng-click="vm.filtrarDataTable(5)" href="#">
+                                            <h2 class="no-margins">{{vm.PanelTotales.tatendidos}}</h2>
+                                            <small>TOTAL ATENDIDO</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.patendidos}}% <i class="fa fa-ledvel-up text-navy"></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style=" background: {{vm.PanelTotales.colorbatendidos}}
+                                                                    !important ;width: {{vm.PanelTotales.patendidos}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por EN GENESIS ..." ng-click="vm.filtrarDataTable(6)" href="#">
+                                            <h2 class="no-margins ">{{vm.PanelTotales.tgenesis}}</h2>
+                                            <small>TOTAL EN GENESIS</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.pgenesis}}% <i class="fa fa-ledvel-down text-navy" style=""></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="background: {{vm.PanelTotales.colorbgenesis}}
+                                                                        !important ;width: {{vm.PanelTotales.pgenesis}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por SIN EXITO ..." ng-click="vm.filtrarDataTable(7)" href="#">
+                                            <h2 class="no-margins ">{{vm.PanelTotales.tsinexito}}</h2>
+                                            <small>TOTAL SIN EXITO</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.psinexito}}% <i class="fa fa-levedl-down text-navy" style=""></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style="background: {{vm.PanelTotales.colorbsinexito}}
+                                                                            !important ;width: {{vm.PanelTotales.psinexito}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tdhover">
+                                        <a style="color: black !important" title="Filtrar por CERRADO ..." ng-click="vm.filtrarDataTable(8)" href="#">
+                                            <h2 class="no-margins ">{{vm.PanelTotales.tcerrados}}</h2>
+                                            <small>TOTAL VENTA EXITOSA</small>
+                                            <div class="stat-percent">{{vm.PanelTotales.pcerrados}}% <i class="fa fa-levedl-down text-navy" style=""></i></div>
+                                            <div class="progress progress-mini">
+                                                <div style=" background: {{vm.PanelTotales.colorbcerrados}}
+                                                                                !important ;width: {{vm.PanelTotales.pcerrados}}%;" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- paneles -->
+    <div class="row">
+        <div class="col-lg-12" style="padding: 0 30px 0 30px;">
+            <div class="ibox float-e-margins border-danger" ng-if="vm.verTabla">
+                <div class="ibox-title">
+                    <h5>Filtro para Ejecutivos</h5>
+                    <div class="ibox-tools">
+                        <button ng-click="vm.filtrarDataTable(9)" title="Filtrar por estado Prioritario ..." data-ng-attr-style="{{ !vm.filtroPrioridad ? 'border: 1px solid black; background-color: #fff; color: black' : 'border: 1px solid white; background-color: black; color: white' }}"  class="btn btn-warning btn-circle"><i
+                                class="fa fa-star"> </i> </button>
+                        <button ng-click="vm.fExportarDatatableParaFicha()" title="Imprimir reporte de ficha ..." class="btn btn-info btn-circle"><i
+                                    class="fa fa-print"> </i> </button>
+                        <button ng-click="vm.fExportarDatatable()" title="Exportar contenido de la tabla.." class="btn btn-success btn-circle"><i
+                                class="fa fa-download"> </i> </button>
+                        <button ng-click="vm.cargarItemsTable()" data-toggle="modal" data-target="#myModal4" title="Derivar contenido de la tabla.." class="btn btn-danger btn-circle"><i class="fa fa-headphones"> </i> </button>
+                        <div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated fadeIn">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                                class="sr-only">Close</span></button>
+                                        <i class="fa fa-headphones modal-icon"></i>
+                                        <h2 class="modal-title">Derivado Masivo <br>
+                                        </h2>
+                                        <div ng-show="vm.datatableReferidos"><small>{{(vm.derivarMasivoList.length ==
+                                                0) ? vm.nFilas : vm.derivarMasivoList.length}} Referencias a derivar.</small></div>
+                                        <h2><small ng-show="!vm.hayItemsParaDerivar">Seleccione una ejecutiva para
+                                                derivar
+                                                las referencias filtradas.</small></h2>
+                                    </div>
+                                    <div ng-show="!vm.hayItemsParaDerivar" class="modal-body" style="padding: 20px 30px 4px 30px;">
+                                        <div class="  input-grdoup ">
+                                            <select ng-model="vm.ejecutivosSelect" class="form-control m-b" name="account">
+                                                <option ng-repeat="e in vm.ejecutivos" value={{e}}>{{e.nombre}}{{(e=='')
+                                                    ? '' : ' -> '}}{{e.sucursalId.nombre}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button ng-click="vm.fDerivarMasivoListNo()" type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                        <button data-dismiss="modal" ng-click="vm.fDerivarMasivoList()" type="button" class="btn btn-primary">Derivar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <button ng-click="vm.fMostrarIngresarReferido()" title="Crear Referido" class="btn btn-primary btn-circle"><i
+                                class="fa fa-plus"> </i> </button>
+                    </div>
+                </div>
+                <div class="ibox-content" style="overflow-x: scroll; font-size: 11px">
+                    <table id="datatableReferidos" class="table table-responsive table-hover table-bordered bordered table-striped table-condensed  datatable" ui-jq="dataTable" ui-options="vm.dataTableOpt">
+                        <thead>
+                            <tr>
+                                <th>Derivar</th>
+                                <th>Nombre</th>
+                                <th>Rut</th>
+                                <th>Correo</th>
+                                <th>Fecha Recepcion</th>
+                                <th>Canal</th>
+                                <th>Comuna</th>
+                                <th>Region</th>
+                                <th>Ejecutivo</th>
+                                <th>Sucursal</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function myFunction(c) {
+        angular.element(document.getElementById('mainController')).scope().verificarBloqueo(c);
+    };
+
+    function myPrioridad(c) {
+        angular.element(document.getElementById('mainController')).scope().myPrioridad(c);
+    };
+</script>

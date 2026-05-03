@@ -1,0 +1,234 @@
+<!-- <div ng-show="vm.mostrarIngresarReferido" class="wrapper wrapper-content animated fadeInRight">
+    <div class="row" ng-include="'templates/referidosMantenedor.html'"></div>
+</div> -->
+<div ng-show="!vm.mostrarIngresarReferido" class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-3" ng-repeat="ref in [vm.referenciaSeleccionada]">
+            <button ng-disabled="false" ng-click="vm.fMostrarIngresarReferido(ref)" title="Completar datos de Referido." class="btn btn-primary btn-block"><i class="fa fa-check"> </i> Completar Ficha</button>
+            <div class="contact-box center-version border-danger">
+                <a>
+                    <img alt="image" class="img-circle" src="img/User.png">
+                    <h3 class="m-b-xs"><strong>{{ref.referidoId.nombre + " " + ref.referidoId.apellido}}</strong></h3>
+                    <div class="font-bold">Rut: <br> {{(ref.referidoId.rut=='') ? 'S/Rut': ref.referidoId.rut}}</div>
+                    <br>
+                    <div class="font-bold">AFP: <br> {{(ref.referidoId.afp==''|| ref.referidoId.afp==undefined) ? 'S/Afp': ref.referidoId.afp}}</div>
+                    <br>
+                    <div class="font-bold">PRIMA: <br> {{(ref.referidoId.prima=='' || ref.referidoId.prima==undefined) ? 'S/Prima': ref.referidoId.prima}}</div>
+                    <address class="m-t-md">
+                        <strong>{{(ref.referidoId.region=='') ? 'S/REGION': ref.referidoId.region}}</strong><br>
+                        {{(!ref.referidoId.comuna) ? 'S/Comuna': ref.referidoId.comuna}}
+                        <br>Telef:
+                        {{(ref.referidoId.telefonos=='') ? 'S/TELEF' : ref.referidoId.telefonos}} 
+                        <br>Telef2:
+                        {{(ref.referidoId.telefonos2=='') ? 'S/TELEF' : ref.referidoId.telefonos2}} 
+                        <br>Telef3:
+                        {{(ref.referidoId.telefonos3=='') ? 'S/TELEF' : ref.referidoId.telefonos3}} <br>
+                        Correo:
+                        {{(ref.referidoId.correo=='') ? 'S/CORREO' : ref.referidoId.correo}}
+                    </address>
+                    <br>
+                    <p><i class="fa fa-phone"> </i> {{(ref.canalname=='') ? 'S/CANAL': ref.canalname}} <br>
+                        <i class="fa fa-handshake-o"> </i> {{(!ref.referidor) ? 'S/Referidor': ref.referidor}} <br>
+                        <br> Telefono Ejecutivo:<br/> {{vm.ejecutivo.telefono}}
+                        <span style=""><i class="fa {{(!ref.ejecutivoId.nombre) ? '' : 'fa-headphones' }}"> </i>
+                        {{(!ref.ejecutivoId.nombre) ? '' : ref.ejecutivoId.nombre}}</span><br>
+                        <span style=""><i class="fa {{(!ref.ejecutivoId.nombre) ? '' : 'fa-globe' }}"> </i>
+                        {{(!ref.ejecutivoId.nombre) ? '' : ref.ejecutivoId.sucursalId.nombre}}</span></p>
+                </a>
+                <div class="contact-box-footer" style="padding: 1px 1px 1px 1px">
+                    <div class="m-t-xs btn-group" style="margin: 11px 0px 13px 0px;">
+                        <button class="btn btn-success btn-outldine btn-block" type="button" style="color: {{ref.accionId.color}}; background: {{ref.accionId.colorb}};">
+                                <i ng-if="ref.accionId.id == 1" class="fa fa-ellipsis-h"> </i>
+                                <i ng-if="ref.accionId.id == 2" class="fa fa-thumbs-up"> </i>
+                                <i ng-if="ref.accionId.id == 3" class="fa fa-clock-o"> </i>
+                                <i ng-if="ref.accionId.id == 5" class="fa fa-headphones"> </i>
+                                <i ng-if="ref.accionId.id == 6" class="fa fa-thumbs-down"> </i>
+                                <i ng-if="ref.accionId.id == 7" class="fa fa-check-square-o"> </i>
+                                <i ng-if="ref.accionId.id == 8" class="fa fa-handshake-o"> </i>
+                                <i ng-if="ref.accionId.id == 9" class="fa fa-gears (alias)"> </i>
+                            {{ref.accionId.nombre}}</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="ibox border-danger">
+                <div class="ibox-content">
+                    <h3>Actividades</h3>
+                    <!--  <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p> -->
+                    <table class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12" border="0">
+                        <tr>
+                            <td>
+                                <div class=" col-lg-4 form-group" id="data_1" style="padding: 0px">
+                                    <div class="input-group date">
+                                        <span class="input-group-addon btn btn-warning"><i class="fa fa-calendar"> </i>
+                                            Reagendar</span> <input id="idfechaReagendar" disabled="true" type="text" class="form-control " ng-model="vm.fechaReagendar">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3" style="padding: 0px">
+                                    <div id="clockpicker" class=" input-group clockpicker" data-autoclose="true">
+                                        <input id="idhora" disabled="true" type="text" class="form-control" ng-model="vm.hora">
+                                        <span class="input-group-addon btn btn-warning">
+                                                <span class="fa fa-clock-o"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5" style="padding: 0px">
+                                    <div class="  input-group ">
+                                        <select ng-model="vm.ejecutivosSelect" class="form-control m-b" name="account">
+                                                <option ng-repeat="e in vm.ejecutivos" value={{e}}>{{e.nombre}}{{(e=='') ?
+                                                    '' : ' -> '}}{{e.sucursalId.nombre}}</option>
+                                                </select>
+                                        <span class="input-group-btn">
+                                                    <button ng-click="vm.cerrarDerivar()" type="button" class="btn btn-sm btn-danger"
+                                                    ng-disabled="false"> <i class="fa fa-headphones"></i> Derivar</button>
+                                                </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!--  <div class="col-lg-12" style="padding: 0px; margin-bottom: 14px">
+                                    <div class="  input-group "  >
+                                        <input  ng-model="vm.mailCliente2Send" type="mail" placeholder="E-mail del cliente ... " class="input input-sm form-control">
+                                        <span class="input-group-btn">
+                                            <button ng-click="vm.cerrarMail2Cliente()" type="button" class="btn btn-sm btn-danger"> <i class="fa fa-window-close"></i> Cerrar / El cliente solicito Email</button>
+                                        </span>
+                                    </div>
+                                </div> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12" style="padding: 0px; margin-bottom: 14px">
+
+                                    <div class="input-group m-b">
+                                        <div class="input-group-btn">
+                                            <!-- <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button" aria-expanded="false">Mensajes <span class="caret"></span></button> -->
+                                            <select ng-change="vm.cargarComentario()" ng-model="vm.mensajesPreEstablecidosSelect" class="form-control m-b" name="account">
+                                                <option ng-repeat="e in vm.mensajesPreEstablecidos" value={{e}}>{{e.descrip}}</option>
+                                            </select>
+                                        </div>
+                                        <input ng-change="vm.medirTam()" placeholder="Escoja un comentario del menu de opciones ..." ng-model="vm.messageActividad.comentarios" ng-disabled="vm.deshabilitadoOtros" type="text" class="input input-sm form-control">
+                                        <span class="input-group-btn">
+
+                                        </span>
+                                    </div>
+                                    <!--  <div class="  input-group "  >
+                                        <input  ng-model="vm.messageActividad.comentarios" type="mail" placeholder="Escriba la actividad ...  " class="input input-sm form-control">
+                                        <span class="input-group-btn">
+                                            <button ng-click="vm.enviarActividad()" type="button" class="btn btn-sm btn-warning"> <i class="fa fa-plus"></i> Dejar pendiente C/comentarios</button>
+                                        </span>
+                                    </div> -->
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 labdel ladbel-danger">
+                                    <h5>Max: {{255-vm.messageActividad.comentarios.length}}</h5>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="inpdut-group">
+                        <!--  <input  ng-model="vm.messageActividad.comentarios" type="text" placeholder="Escriba la actividad ... " class="input input-sm form-control"> -->
+                        <div class="inpdut-group">
+                            <span class="input-group-btn" style="margin-top: 15px">
+                                <table style="margin-top: 13px" width="100%" border="0">
+                                    <tr>
+                                        <td style="padding: 2px !important"> <button ng-click="vm.volverDeEjecutiva()"
+                                            type="button" class="btn btn-sm btn-primary btn-block"> <i class="fa fa-reply"></i>
+                                        Volver al listado</button>
+                                    </td>
+                                    <td style="padding: 2px !important"> <button ng-disabled="false" ng-click="vm.enviarActividad()"
+                                        type="button" class="btn btn-sm btn-warning btn-block"> <i class="fa fa-plus"></i>
+                                    Dejar Comentario</button></td>
+                                    <td style="padding: 2px !important">
+                                        <button ng-disabled="false" ng-click="vm.cerrarConExito()" type="button"
+                                        class="btn btn-sm btn-success btn-block"> <i class="fa fa-check"></i>
+                                    Venta Exitosa</button>
+                                </td>
+                                <td style="padding: 2px !important">
+                                    <button ng-disabled="false" style="background-color: grey;color: white"
+                                    ng-click="vm.cerrarSinExito()" type="button" class="btn btn-sm btn-block">
+                                    <i class="fa fa-window-close"></i> Sin Exito</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </span>
+                        </div>
+                        <br>
+
+                        <div class="modal inmodal" id="myModalReagendar" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated fadeIn">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                    class="sr-only">Close</span></button>
+                                        <i class="fa fa-calendar-check-o  modal-icon"></i>
+                                        <h2 class="modal-title">Cambiar fecha de reagendado <br>
+                                        </h2>
+                                        <div ng-show="vm.datatableReferidos"><small>{{(vm.derivarMasivoList.length ==
+                                    0) ? vm.nFilas : vm.derivarMasivoList.length}} Referencias a derivar.</small></div>
+                                        <h2><small ng-show="!vm.hayItemsParaDerivar">Esta operacion cambiara la fecha de reagendado, manteniendo el resto de la informacion sin cambios.</small></h2>
+                                    </div>
+                                    <div ng-show="!vm.hayItemsParaDerivar" class="modal-body" style="padding: 20px 30px 4px 30px;">
+                                        <div class=" row input-grdoup ">
+
+                                            <!-- aqui va la fecha -->
+                                            <div class="text-center" style="width: 100%;margin-left: 4em;">
+                                                <div class=" col-lg-6 form-group" id="data_1_reagendar" style="padding: 0px">
+                                                    <div class="input-group date">
+                                                        <span class="input-group-addon btn btn-warning"><i class="fa fa-calendar"> </i>
+                                                    Reagendar</span> <input id="idfechaReagendar_reagendar" disabled="true" type="text" class="form-control " ng-model="vm.fechaReagendar">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3" style="padding: 0px; ">
+                                                    <div id="clockpicker_reagendar" class=" input-group  clockpicker" data-autoclose="true">
+                                                        <input id="idhora_reagendar" disabled="true" type="text" class="form-control" ng-model="vm.hora">
+                                                        <span class="input-group-addon btn btn-warning">
+                                                        <span class="fa fa-clock-o"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- aqui va la fecha -->
+
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                        <!-- <button data-dismiss="modal" ng-click="vm.fDerivarMasivoList()" type="button" class="btn btn-primary">Guardar</button> -->
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+
+                        <!-- ng-click="vm.editarBitacora(bit)" -->
+
+                        <ul class="sortable-list connectList agile-list ui-sortable" id="todo">
+                            <li ng-click="vm.fijarBitacora2Cambio(bit)" ng-attr-data-toggle="{{(bit.comentarios.includes('REAGENDAR')) ? 'modal' : '' }}" data-target="#myModalReagendar" ng-repeat="bit in vm.bitacoras" class="warning-element ui-sortable-handle" id="task1">
+                                {{bit.comentarios}}
+                                <div ng-if="(!bit.comentarios.includes('REAGENDAR') && !bit.comentarios.includes('DERIVAR'))" class="pull-right" style="height: 0.1em; margin-top: -10px; margin-right: -10px;">
+                                    <button ng-if="true" ng-click="vm.eliminarComentario(bit)" title="Eliminar comentario ..." style="border:  none ;background-color: #fafafb;color: #cc0100;height: 32px; width: 25px;" type="button" class="btn btn-white" data-dismiss="modal">
+                                        <i class="fa fa-times" style="margin-left: -5px;"></i>
+                                    </button>
+                                </div>
+                                <div ng-if="(bit.comentarios.includes('REAGENDAR') && !bit.comentarios.includes('DERIVAR'))" class="pull-right" style="height: 0.1em; margin-top: -10px; margin-right: -10px;">
+                                    <button   title="Editar reagendado ..." style="border:  none ;background-color: #fafafb;color: green;height: 32px; width: 25px;" type="button" class="btn btn-white" data-dismiss="modal">
+                                        <i class="fa fa-edit" style="margin-left: -5px;"></i>
+                                    </button>
+                                </div>
+
+
+                                <div class="agile-detail">
+                                    <div class="pull-right"><i class="fa fa-user"></i> {{bit.usuario}}</div>
+                                    <i class="fa fa-clock-o"></i> {{bit.fecha| date : 'medium'}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
