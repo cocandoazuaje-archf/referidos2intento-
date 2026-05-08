@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ProspeccionConfig>
+    <config>
+        <url>https://0l796oepvj.execute-api.us-east-1.amazonaws.com/dev/consultaProspeccionRRVV</url>
+        <x_api_key>HnCLZgKQRn724CUHocTUU65rKo7h5uX23kGAkJa1</x_api_key>
+    </config>
+</ProspeccionConfig>

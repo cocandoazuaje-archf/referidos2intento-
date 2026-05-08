@@ -1,0 +1,219 @@
+<!-- coxrestaurar, este va como index.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema Referidos RRVV</title>
+    <link href="css/bootstrap.min.css?v_24092019" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css?v_24092019" rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css?v_24092019" rel="stylesheet">
+    <link href="css/plugins/toastr/toastr.min.css?v_24092019" rel="stylesheet">
+    <link href="css/animate.css?v_24092019" rel="stylesheet">
+    <link href="css/style.css?v_24092019" rel="stylesheet">
+    <link href="css/plugins/clockpicker/clockpicker.css?v_24092019" rel="stylesheet">
+    <link href="css/plugins/steps/jquery.steps.css?v_24092019" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css?v_24092019" rel="stylesheet">
+    <link href="css/plugins/touchspin/jquery.bootstrap-touchspin.min.css?v_24092019" rel="stylesheet">
+    <link href="css/plugins/dataTables/datatables.min.css?v_24092019" rel="stylesheet">
+    <script type="text/javascript" src="js/keycloak2.js"></script>
+    <script src="js/jquery-3.1.1.min.js?v_24092019"></script>
+    <link href="css/highcharts.css?v_24092019" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="angular/angular-material.min.css">
+    <script type="text/javascript" src="angular/angular.js"></script>
+
+    <!-- angular-material animate -->
+    <script src="angular/angular-animate.min.js"></script>
+    <script src="angular/angular-aria.min.js"></script>
+    <script src="angular/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="angular/angular-material.min.js"></script>
+
+</head>
+
+<!-- ng-app="todo" -->
+
+<body id="mainController" ng-controller="TodoController as vm">
+    <div id="wrapper" style="background-color: #cc0001">
+        <nav class="navbar-default navbar-static-side" role="navigation" style="position: fixed;">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header" style="height: 126px">
+                        <div class="dropdown profile-element" style="margin-left: -10px"> <span>
+                                <img style="margin-top: 10px;height: 42px; " src="img/consorcio.png" alt="">
+                        </div>
+                        <div class="logo-element">
+                            <img style="height: 68px; margin-top: 8px" src="img/consorc.png" alt=""> 
+                        </div>
+                    </li>
+                    <li ng-show="(vm.rollUsuario=='usr' && vm.dobleRoll==false) || vm.rollUsuario=='adm' || vm.rollUsuario=='ast'"
+                        style="margin-top: 25px">
+                        <a ng-click="vm.limpiarFiltroPrimero()"><i class="fa fa-address-card-o"></i>
+                            <span class="nav-label">Referidos</span></a>
+                    </li>
+                    <li ng-show="vm.dobleRoll==true" style="margin-top: 25px">
+                        <a ng-click="vm.actuareComoSupervisor()"><i class="fa fa-user"></i>
+                            <span class="nav-label">Referidos (Sup)</span></a>
+                    </li>
+                    <li ng-show="vm.dobleRoll==true">
+                        <a ng-click="vm.actuareComoEjecutivo()"><i class="fa fa-address-card-o"></i>
+                            <span class="nav-label">Referidos (Eje)</span></a>
+                    </li>
+
+                    <li ng-show="vm.rollUsuario == 'adm'">
+                        <a ng-click="vm.fmostrarCargarExcel()"><i class="fa fa-database"></i>
+                            <span class="nav-label">Datos Excel</span></a>
+                    </li>
+                </ul>
+                </div>
+                <div class="">
+                    <ul class="nav metismenu" id="side-menu">
+                        <li>
+                            <a ng-click="vm.logout()"><i class="fa fa-reply"></i> <span class="nav-label">Desconectar /
+                                Salir</span></a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-header pull-right">
+                        <a class="btn btn-primary " href="#">
+                            <h4><img height="30px" src="img/User3.png" alt=""> {{vm.mostrarPerfil}}</h4>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading" style="background-color: transparent;border: none !important;">
+                <div class="col-lg-10">
+                    <h2>Sistema Referidos RRVV</h2>
+                </div>
+            </div>
+            <div ng-show="vm.verContactos.contactos" style="padding: 0px 10px 40px; " class="wrapper wrapper-content animated fadeInLeft">
+                <div class="row">
+                    <div ng-include="'templates/referidosCol_24092019.html'"></div>
+                </div>
+            </div>
+            <div ng-show="vm.verContactos.actividades" class="wrapper wrapper-content animated fadeInRight" style="padding: 0px  !important; ">
+                <div ng-include="'templates/actividadContactos_24092019.html'"></div>
+            </div>
+            <div ng-show="vm.verProspectos.contactos" class="wrapper wrapper-content animated fadeInLeft">
+                <div class="row">
+                    <div ng-include="'templates/prospectosCol_24092019.html'"></div>
+                </div>
+            </div>
+            <div ng-show="vm.verProspectos.actividades" class="wrapper wrapper-content animated fadeInRight">
+                <div ng-include="'templates/actividadProspectos_24092019.html'"></div>
+            </div>
+            <!--            <div ng-show="vm.mostrarIngresarReferido" class="wrapper wrapper-content animated fadeInRight" style="padding-top: 0px !important">
+                <div class="row" ng-include="'templates/referidosMantenedor_24092019.html'"></div>
+            </div>-->
+            <div ng-show="vm.mostrarIngresarReferido" class="wrapper wrapper-content animated fadeInRight" style="padding-top: 0px !important">
+                <div class="row" ng-include="'templates/referidosMantenedor_24092019_2.html'"></div>
+            </div>
+            <div ng-show="vm.mostrarCargarExcel" style="padding: 0px 10px 40px;" class="wrapper wrapper-content animated fadeInRight">
+                <div class="row" ng-include="'templates/cargarExcel_24092019.html'"></div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    Aplicacion Referidos RRVV - <strong>Rev. 20191004_INCADI-18-1</strong>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Mainly scripts -->
+        <script src="js/bootstrap.min.js?v_24092019"></script>
+        <script src="js/plugins/datapicker/bootstrap-datepicker.js?v_24092019"></script>
+        <!-- Clock picker -->
+        <script src="js/plugins/clockpicker/clockpicker.js?v_24092019"></script>
+        <!-- Date range use moment.js same as full calendar plugin -->
+        <script src="js/plugins/fullcalendar/moment.min.js?v_24092019"></script>
+        <script src="js/plugins/metisMenu/jquery.metisMenu.js?v_24092019"></script>
+        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js?v_24092019"></script>
+        <script src="js/plugins/dataTables/datatables.min.js?v_24092019"></script>
+        <!-- Custom and plugin javascript -->
+        <script src="js/inspinia.js?v_24092019"></script>
+        <script src="js/plugins/pace/pace.min.js?v_24092019"></script>
+        <!-- <script src="angular/ui-bootstrap-tpls.js"></script> -->
+        <script src="angular/angular-ui-utils.min.js"></script>
+        <!-- <script src="angular/dataTables.bootstrap.min.js"></script> -->
+        <script type="text/javascript" src="angular/angular-resource.js"></script>
+        <script type="text/javascript" src="angular/angular-route.js"></script>
+        <script type="text/javascript" src="angular/angular-cookies.js"></script>
+        <script type="text/javascript" src="angular/angular-js-xlsx.js"></script>
+        <script type="text/javascript" src="angular/xlsx.core.min.js"></script>
+
+        <!-- Sweet alert -->
+        <script src="js/sweetalert.min.js"></script>
+        <!-- <script src="js/plugins/sweetalert/sweetalert.min.js"></script> -->
+
+        <script type="text/javascript" src="app.js"></script>
+        <script src="js/plugins/toastr/toastr.min.js?v_24092019"></script>
+        <script src="js/plugins/steps/jquery.steps.min.js?v_24092019"></script>
+        <script src="js/plugins/iCheck/icheck.min.js?v_24092019"></script>
+        <script src="js/plugins/touchspin/jquery.bootstrap-touchspin.min.js?v_24092019"></script>
+        <script src="js/highcharts/highcharts.js?v_24092019"></script>
+        <script src="js/highcharts/exporting.js?v_24092019"></script>
+        <!-- ChartJS-->
+        <script src="js/plugins/chartJs/Chart.min.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Sucursales.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Bitacoras.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/BitacorasByReferencia.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ReferenciasNoCerradas.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/DerivarMasivo.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Referencias.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ReferenciasReagendadas.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Canales.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Ejecutivos.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Referidos.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ReferenciasNoCerradasFull.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/RolesUsuariosNombre.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/RolesUsuarios.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/VerificaReferenciaActiva.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ImportarReferidos.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ImportarSucursalesEjecutivos.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ImportarSucursales.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ImportarRolesUsuarios.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Acciones.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/Sucursales.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ActualizarReferidosSi.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ActualizarReferidosNo.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ReferenciasReagendadasFull.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ExportarDatatable.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/ExportarReferidos.js?v_24092019"></script>
+        <script type="text/javascript" src="domain/PanelTotales.js?v_24092019"></script>
+        <script type="text/javascript" src="controllers/todoController.js?v_24092019"></script>
+        <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js?v_24092019"></script>
+        <script>
+            $(function() {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "progressBar": true,
+                    "preventDuplicates": false,
+                    "positionClass": "toast-top-right",
+                    "onclick": null,
+                    "showDuration": "400",
+                    "hideDuration": "1000",
+                    "timeOut": "2000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            });
+        </script>
+</body>
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.7.1/contacts_24092019.html by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 28 Jan 2018 18:11:17 GMT -->
+
+</html>

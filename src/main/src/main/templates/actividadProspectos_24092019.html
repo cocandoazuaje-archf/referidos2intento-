@@ -1,0 +1,65 @@
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-3"  ng-repeat="ref in [vm.referenciaSeleccionada]">
+            <div class="contact-box center-version">
+
+                <a href="#" ng-click="vm.mostrarActividades(ref)">
+
+                    <img alt="image" class="img-circle" src="img/User.png">
+
+
+                    <h3 class="m-b-xs"><strong>{{ref.referidoId.nombre.substr(0, 10)}}</strong></h3>
+
+                    <div class="font-bold">Rut: <br> {{(ref.referidoId.rut=='') ? '2455879': ref.referidoId.rut}}</div>
+                    <address class="m-t-md">
+                        <strong>{{(ref.referidoId.region=='') ? 'Santiago Centro': ref.referidoId.region.substr(0,10)}}</strong><br>
+                        {{(ref.referidoId.calle=='') ? 'San Miguel 445': ref.referidoId.calle.substr(0,10)}}<br>Telefs: 
+                        {{(ref.referidoId.telefonos=='') ? '2566877' : ref.referidoId.telefonos}} <br> Correo: 
+                        {{(ref.referidoId.correo=='') ? 'user@gmail.com' : ref.referidoId.correo}}
+                    </address>
+                    <br>
+                    <p><i class="fa fa-phone"> </i> {{(ref.canalId.nombre=='') ? 'Campaña': ref.canalId.nombre}} <br>
+                        <i class="fa fa-headphones"> </i> {{(ref.ejecutivoId.nombre=='') ? 'Ejecutiva' : ref.ejecutivoId.nombre}}</p>
+
+                </a>
+                <div class="contact-box-footer">
+                    <div class="m-t-xs btn-group">
+                        <button ng-click="vm.mostrarActividades(ref)" class="btn {{(ref.accionId.id==1) ? 'btn-default' : (ref.accionId.id==2) ? 'btn-warning' : (ref.accionId.id==3) ? 'btn-primary' : 'btn-danger'}} btn-outline btn-block" type="button"><i class="fa {{(ref.accionId.id==1) ? 'fa-comment-o' : 'fa-comments' }}"> </i> {{ref.accionId.nombre}}</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Actividades</h3>
+                    <!--  <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p> -->
+
+                    <div class="input-group">
+                        <input ng-model="vm.messageActividad.comentarios" type="text" placeholder="Escriba la actividad ... " class="input input-sm form-control">
+                        <span class="input-group-btn">
+                            <button ng-click="vm.enviarActividad()" type="button" class="btn btn-sm btn-warning"> <i class="fa fa-plus"></i> Agregar</button>
+                        </span>
+                    </div>
+
+                    <ul class="sortable-list connectList agile-list ui-sortable" id="todo">
+                        <li ng-repeat="bit in vm.bitacoras" class="warning-element ui-sortable-handle" id="task1">
+                            {{bit.comentarios}}
+                            <div class="agile-detail">
+                                <!-- <a href="#" class="pull-right btn btn-xs btn-white">Tag</a> -->
+                                <i class="fa fa-clock-o"></i> {{bit.fecha| date :  'medium'}}
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

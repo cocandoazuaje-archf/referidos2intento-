@@ -1,0 +1,30 @@
+<div class="modal inmodal" id="myModaModificarReagendar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <i class="fa fa-headphones modal-icon"></i>
+                <h2 class="modal-title">Derivado Masivo <br>
+                </h2>
+                <div ng-show="vm.datatableReferidos"><small>{{(vm.derivarMasivoList.length ==
+                        0) ? vm.nFilas : vm.derivarMasivoList.length}} Referencias a derivar.</small></div>
+                <h2><small ng-show="!vm.hayItemsParaDerivar">Seleccione una ejecutiva para
+                        derivar
+                        las referencias filtradas.</small></h2>
+            </div>
+            <div ng-show="!vm.hayItemsParaDerivar" class="modal-body" style="padding: 20px 30px 4px 30px;">
+                <div class="  input-grdoup ">
+                    <select ng-model="vm.ejecutivosSelect" class="form-control m-b" name="account">
+                        <option ng-repeat="e in vm.ejecutivos" value={{e}}>{{e.nombre}}{{(e=='')
+                            ? '' : ' -> '}}{{e.sucursalId.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="vm.fDerivarMasivoListNo()" type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button data-dismiss="modal" ng-click="vm.fDerivarMasivoList()" type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

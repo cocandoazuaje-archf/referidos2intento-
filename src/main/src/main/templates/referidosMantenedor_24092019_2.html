@@ -1,0 +1,298 @@
+<div style="" class="col-lg-12 text-center" ng-show="vm.mostrarLoading">
+    <img style="height: 70px; " src="img/procesando2.gif" alt="">
+</div>
+<div class="tabs-container">
+    <div class="col-lg-12" style="min-width: 100%">
+        <form name="fichaForm" ng-submit="vm.guardarFicha2()">
+            <div class="ibox float-e-margins border-danger">
+                <div class="ibox-title">
+                    <div class="form-group" style="min-width: 700px">
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 50%">
+                                    <h3>Información de Referido & Encuestas Canal Digital</h3>
+                                </td>
+                                <td>
+                                    <ul class="nav nav-tabs" style="width:279px">
+                                        <li ng-show="vm.ficha.CANALNAME.toUpperCase() == 'MANUAL PENSIONADO'" ng-click="vm.fverEncuesta1()" class="active"><a data-toggle="tab" href="#tab-1">Canal Digital</a></li>
+                                        <li ng-click="vm.fverEncuesta2()"><a data-toggle="tab" href="#tab-2">Otras Encuestas</a></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="pull-right ibox-tools" style="margin-top: -9px;">
+                                        <button title="Guardar Ficha ..." ng-disabled="fichaForm.$invalid" type="submit" class="btn btn-primary btn-circle "><i
+                                                class="fa fa-check">
+                                            </i> </button>
+                                        <button title="Volver ..." ng-click="vm.cerrarFicha()" type="button" class="btn btn-warning btn-circle "><i
+                                                class="fa fa-reply">
+                                            </i> </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="ibox-content">
+                    <md-content class="md-padding" layout-xs="column" layout="row">
+                        <div layout="column" class="layout-column flex-xs flex-gt-xs-30">
+                            <md-content class="md-padding" layout-xs="column" layout="row">
+                                <md-card style="height: 71em;">
+                                    <div align="center"><img style="width:219px; height:94.6px;" ng-src="{{vm.imagePath1}}" class="md-card-image" alt="Washed Out"></div>
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <span style="text-align:center" class="md-headline">Datos del Referido</span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <br>
+                                    <md-card-content>
+                                        <form name="colorForm">
+                                            <md-input-container style="padding: 0px !important" class="md-block">
+                                                <label> Nombre del Referido</label>
+                                                <input name="nameNombreCliente" md-maxldength="100" ng-model="vm.ficha.NOMBRE" required>
+                                                <div ng-messages="colorForm.favoriteColor.$error">
+                                                    <div ng-message="required">Dato Requerido!</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div layout-gt-xs="row">
+                                                <md-input-container style="padding: 0px !important" class="md-block" flex-gt-xs>
+                                                    <div class="form-group" id="data_99">
+                                                        <label> Fecha Nacimiento</label>
+                                                        <div class="input-group date">
+                                                            <input style="margin-bottom: -24px;" type="text" class="form-control" ng-model="vm.ficha.FECHANAC"><span class="input-group-addon" style=""><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <!--  <md-datepicker  ng-focus="vm.abriendoCalendar()" ng-model="vm.ficha.FECHANAC" md-placeholder="Enter date" ></md-datepicker> -->
+                                                    <div ng-messages="colorForm.favoriteColor.$error">
+                                                        <div ng-message="required">Dato Requerido!</div>
+                                                    </div>
+                                                </md-input-container>
+                                                <md-input-container style="padding: 0px !important">
+                                                    <label> Rut del Referido</label>
+                                                    <input ng-blur="vm.armarRut()" maxlength="10" name="nameRutCliente" ng-model="vm.ficha.RUT" ui-mask-placeholder md-maxldength="9">
+                                                    <div ng-messages="colorForm.favoriteColor.$error">
+                                                        <div ng-message="required">Dato Requerido!</div>
+                                                    </div>
+                                                </md-input-container>
+                                            </div>
+                                            <div layout-gt-xs="row">
+                                                <md-input-container style="padding: 0px !important">
+                                                    <label> Telefono #1 </label>
+                                                    <input name="nameCelularCliente" ng-model="vm.ficha.celularReferido">
+                                                    <div ng-messages="colorForm.favoriteColor.$error">
+                                                        <div ng-message="required">Dato Requerido!</div>
+                                                    </div>
+                                                </md-input-container>
+                                                <md-input-container style="padding: 0px !important">
+                                                    <label> Telefono #2 </label>
+                                                    <input name="nameCelularCliente" ng-model="vm.ficha.celularReferido2">
+                                                    <div ng-messages="colorForm.favoriteColor.$error">
+                                                        <div ng-message="required">Dato Requerido!</div>
+                                                    </div>
+                                                </md-input-container>
+                                                <md-input-container style="padding: 0px !important">
+                                                    <label> Telefono #3 </label>
+                                                    <input name="nameCelularCliente" ng-model="vm.ficha.celularReferido3">
+                                                    <div ng-messages="colorForm.favoriteColor.$error">
+                                                        <div ng-message="required">Dato Requerido!</div>
+                                                    </div>
+                                                </md-input-container>
+                                            </div>
+                                            <div laydout-gt-xs="row">
+                                                <md-input-container style="padding: 0px !important" class="md-block" flex-gt-xs>
+                                                    <p>Sexo del Referido <span class="radioValue"></span> </p>
+                                                    <md-radio-group ng-model="vm.ficha.sexo" required>
+                                                        <md-radio-button value="1" class="md-primary">Masculino</md-radio-button>
+                                                        <md-radio-button value="2"> Femenino </md-radio-button>
+                                                    </md-radio-group>
+                                                </md-input-container>
+
+                                            </div>
+                                            <md-input-container style="padding: 0px !important" class="md-block">
+                                                <label> Mail del Cliente</label>
+                                                <input type="text" name="nameMailCliente" ng-model="vm.ficha.CORREO">
+                                                <div ng-messages="colorForm.favoriteColor.$error">
+                                                    <div ng-message="required">Dato Requerido!</div>
+                                                </div>
+                                            </md-input-container>
+
+
+                                            <md-input-container style="padding: 0px !important" class="md-block">
+                                                <label> AFP </label>
+                                                <input type="text" name="afpCliente" ng-model="vm.ficha.AFP">
+                                                <div ng-messages="colorForm.favoriteColor.$error">
+                                                    <div ng-message="required">Dato Requerido!</div>
+                                                </div>
+                                            </md-input-container>
+
+
+                                            <md-input-container style="padding: 0px !important" class="md-block">
+                                                <label> Prima</label>
+                                                <input type="text" name="primaCliente" ng-model="vm.ficha.PRIMA">
+                                                <div ng-messages="colorForm.favoriteColor.$error">
+                                                    <div ng-message="required">Dato Requerido!</div>
+                                                </div>
+                                            </md-input-container>
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label> Canal</label>
+                                                <select ng-disabled="vm.estoyViendoUnaRef" required ng-model="vm.ficha.CANALNAME" class="form-control m-b">
+                                                    <option ng-repeat="c in vm.canales" ng-value="c.canalname">{{c.canalname}}</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </md-card-content>
+                                </md-card>
+                            </md-content>
+                        </div>
+
+                        <div flex-xs flex-gt-xs="50" layout="column">
+                            <div class="tab-content">
+                                <!--contenido pestañas-->
+                                <div id="tab-1" ng-show="vm.ficha.CANALNAME.toUpperCase() == 'MANUAL PENSIONADO'" class="tab-pane" ng-class="{'active': vm.verEncuesta1}" style="height: 100%">
+                                    <md-content style="width: 565px;overflow: hidden" class="md-padding" layout-xs="column" layout="row">
+                                        <div class="layout-column flex-xs flex-gt-xs-50">
+                                            <md-card style="height: 793px;">
+                                                <div align="center"><img style="width:219px; height:94.6px;" ng-src="{{vm.imagePath2}}" class="md-card-image" alt="Washed Out"></div>
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span style="text-align:center" class="md-headline">Encuesta Canal Digital</span>
+                                                    </md-card-title-text>
+                                                </md-card-title>
+                                                <br>
+                                                <div align="center"><button title="Borrar Ficha ..." ng-click="vm.fichaCanalDigitalBorrar()" type="button" class="btn btn-primary-delete btn-circle "><i
+                                                            class="fa fa-eraser"></i> </button></div>
+                                                <md-card-content>
+                                                    <form name="colorForm">
+                                                        <md-input-container style="margin-bottom: -5px" class="md-block flex-gt-xs" ng-repeat="p in vm.canalDigital">
+                                                            <p ng-show="vm.traeRespuestas == 0">{{p.pregunta}}<span class="radioValue"></span> </p>
+                                                            <p ng-show="vm.traeRespuestas == 1">{{p.pregunta.pregunta}}<span class="radioValue"></span> </p>
+                                                            <md-radio-group ng-show="$index < 3" ng-required="false" ng-model="p.respuesta2">
+                                                                <md-radio-button value="1" class="md-primary">Si</md-radio-button>
+                                                                <md-radio-button value="2"> No </md-radio-button>
+                                                            </md-radio-group>
+                                                        </md-input-container>
+                                                        <md-input-container style="padding: 0px !important" class="md-block" flex-gt-xs>
+                                                            <div ng-show="vm.canalDigital[1].respuesta2 == 1" class="form-group" id="data_98">
+                                                                <!--<label>Fecha solicitud</label>-->
+                                                                <div class="input-group date">
+                                                                    <input style="margin-bottom: -24px;" type="text" class="form-control" ng-model="vm.canalDigital[3].respuesta2"><span class="input-group-addon" style=""><i class="fa fa-calendar"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        </md-input-container>
+                                                    </form>
+                                                </md-card-content>
+                                            </md-card>
+                                        </div>
+                                    </md-content>
+                                </div>
+
+
+                                <div id="tab-2" class="tab-pane" ng-class="{'active': vm.verEncuesta2}">
+                                    <div ng-show="vm.verEncuesta2">
+                                        <md-content style="width: 600px" class="md-padding" layout-xs="column" layout="row">
+                                            <div class="layout-column flex-xs flex-gt-xs-50">
+                                                <md-card style="height: 793px;">
+                                                    <div align="center"><img style="width:219px; height:94.6px;" ng-src="{{vm.imagePath2}}" class="md-card-image" alt="Washed Out"></div>
+                                                    <md-card-title>
+                                                        <md-card-title-text>
+                                                            <span style="text-align:center" class="md-headline">Encuesta Referido</span>
+                                                        </md-card-title-text>
+                                                    </md-card-title>
+                                                    <md-card-content>
+                                                        <form name="colorForm">
+                                                            <md-input-container class="md-block" flex-gt-xs>
+                                                                <p>Para quien fue la atención ? <span class="radioValue"></span> </p>
+                                                                <md-radio-group ng-required="false" ng-model="vm.ficha.clienteSolicito">
+                                                                    <md-radio-button value="1" class="md-primary">Para él</md-radio-button>
+                                                                    <md-radio-button value="2"> Para un tercero </md-radio-button>
+                                                                </md-radio-group>
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block" flex-gt-xs>
+                                                                <p>¿Cómo supo que podía pensionarse en Consorcio? <span class="radioValue"></span>
+                                                                </p>
+                                                                <md-radio-group ng-required="false" ng-model="vm.ficha.pensionarse">
+                                                                    <md-radio-button value="1" class="md-primary">Es cliente Consorcio</md-radio-button>
+                                                                    <md-radio-button value="2"> Recomendación amigo, conocido, familiar
+                                                                    </md-radio-button>
+                                                                    <md-radio-button value="3"> Recomendación AFP </md-radio-button>
+                                                                    <md-radio-button value="4"> Cercanía sucursal </md-radio-button>
+                                                                    <md-radio-button value="5"> Buscó información por Internet
+                                                                    </md-radio-button>
+                                                                    <md-radio-button value="6"> Facebook </md-radio-button>
+                                                                    <md-radio-button value="7"> Radio </md-radio-button>
+                                                                    <md-radio-button value="8"> TV </md-radio-button>
+                                                                    <md-radio-button value="9"> Contactado por CNS </md-radio-button>
+                                                                    <md-radio-button value="10"> Otro </md-radio-button>
+                                                                </md-radio-group>
+                                                            </md-input-container>
+                                                        </form>
+                                                    </md-card-content>
+                                                </md-card>
+                                            </div>
+
+                                            <TABLE border="0" cellpadding="0" cellspacing="0">
+                                                <TR>
+                                                    <TD bgcolor="#FFFFFF" width="70"></TD>
+                                                    <TD width="5"></TD>
+                                                    <TD width="*">
+                                                        <BR>
+                                                    </TD>
+                                                </TR>
+                                            </TABLE>
+
+                                            <div class="layout-column flex-xs flex-gt-xs-50">
+                                                <md-card style="height: 793px;">
+                                                    <div align="center"><img style="width:219px; height:94.6px;" ng-src="{{vm.imagePath3}}" class="md-card-image" alt="Washed Out"></div>
+                                                    <md-card-content>
+                                                        <form name="colorForm">
+                                                            <md-input-container class="md-block" flex-gt-xs>
+                                                                <p>¿Qué acción realizó con el cliente? <span class="radioValue"></span> </p>
+                                                                <md-radio-group ng-required="false" ng-model="vm.ficha.accionRealizo">
+                                                                    <md-radio-button value="1" class="md-primary">Asesoría</md-radio-button>
+                                                                    <md-radio-button value="2"> Ingreso solicitud de oferta a SCOMP
+                                                                    </md-radio-button>
+                                                                    <md-radio-button value="3"> Estudio Pensión </md-radio-button>
+                                                                    <md-radio-button value="4"> Oferta Externa </md-radio-button>
+                                                                    <md-radio-button value="5">Cierre </md-radio-button>
+                                                                </md-radio-group>
+                                                            </md-input-container>
+                                                            <div>
+                                                                <md-input-container class="md-block" flex-gt-xs>
+                                                                    <p>Tipo de Pensión <span class="radioValue"></span> </p>
+                                                                    <md-radio-group ng-required="false" ng-model="vm.ficha.tipoPension">
+                                                                        <md-radio-button value="1" class="md-primary">Vejez </md-radio-button>
+                                                                        <md-radio-button value="2"> Vejez Anticipada </md-radio-button>
+                                                                        <md-radio-button value="3"> Invalidez </md-radio-button>
+                                                                        <md-radio-button value="4"> Sobrevivencia </md-radio-button>
+                                                                    </md-radio-group>
+                                                                </md-input-container>
+                                                            </div>
+                                                        </form>
+                                                    </md-card-content>
+                                                </md-card>
+                                            </div>
+                                        </md-content>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </md-content>
+                    <div class="ibox-tools">
+                        <button title="Guardar Ficha ..." ng-disabled="fichaForm.$invalid" type="submit" class="btn btn-primary btn-circle "><i
+                                class="fa fa-check">
+                            </i> </button>
+                        <button title="Volver ..." ng-click="vm.cerrarFicha()" type="button" class="btn btn-warning btn-circle "><i
+                                class="fa fa-reply">
+                            </i> </button>
+                    </div>
+                </div>
+        </form>
+        </div>
+    </div>

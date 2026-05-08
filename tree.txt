@@ -1,0 +1,207 @@
+.
+├── deploy.sh
+├── install_git.sh
+├── lis
+├── nb-configuration.xml
+├── nbactions.xml
+├── pom.xml
+├── README.md
+├── src
+│   └── main
+│       ├── angular
+│       │   ├── angular-animate.min.js
+│       │   ├── angular-aria.min.js
+│       │   ├── angular-cookies.js
+│       │   ├── angular-js-xlsx.js
+│       │   ├── angular-material.min.css
+│       │   ├── angular-material.min.js
+│       │   ├── angular-messages.min.js
+│       │   ├── angular-mocks.js
+│       │   ├── angular-resource.js
+│       │   ├── angular-route.js
+│       │   ├── angular-ui-router.js
+│       │   ├── angular-ui-utils.min.js
+│       │   ├── angular.js
+│       │   ├── cpexcel.js
+│       │   ├── dataTables.bootstrap.min.js
+│       │   ├── jszip.js
+│       │   ├── LICENSE
+│       │   ├── ods.js
+│       │   ├── ui-bootstrap-tpls.js
+│       │   ├── xlsx.core.min.js
+│       │   ├── xlsx.core.min.map
+│       │   ├── xlsx.full.min.js
+│       │   ├── xlsx.full.min.map
+│       │   ├── xlsx.js
+│       │   ├── xlsx.min.js
+│       │   └── xlsx.min.map
+│       ├── app copia.js
+│       ├── app.gif
+│       ├── app.js
+│       ├── cc.gif
+│       ├── cg.gif
+│       ├── collapse.gif
+│       ├── controllers
+│       │   ├── psql-tabla.txt
+│       │   ├── todoController copia.js
+│       │   └── todoController.js
+│       ├── css
+│       │   ├── animate.css
+│       │   ├── bootstrap.min.css
+│       │   ├── highcharts.css
+│       │   ├── patterns
+│       │   ├── plugins
+│       │   └── style.css
+│       ├── css_master-all.css
+│       ├── datetime
+│       │   └── css
+│       ├── domain
+│       │   ├── Acciones.js
+│       │   ├── ActualizarReferidos.js
+│       │   ├── ActualizarReferidosNo.js
+│       │   ├── ActualizarReferidosSi.js
+│       │   ├── Bitacoras.js
+│       │   ├── BitacorasByReferencia.js
+│       │   ├── Canales.js
+│       │   ├── DerivarMasivo.js
+│       │   ├── Ejecutivos.js
+│       │   ├── ExportarDatatable.js
+│       │   ├── ExportarReferidos.js
+│       │   ├── ImportarReferidos.js
+│       │   ├── ImportarRolesUsuarios.js
+│       │   ├── ImportarSucursales.js
+│       │   ├── ImportarSucursalesEjecutivos.js
+│       │   ├── PanelTotales.js
+│       │   ├── Referencias.js
+│       │   ├── ReferenciasNoCerradas.js
+│       │   ├── ReferenciasNoCerradasFull.js
+│       │   ├── ReferenciasReagendadas.js
+│       │   ├── ReferenciasReagendadasFull.js
+│       │   ├── Referidos.js
+│       │   ├── RolesUsuarios.js
+│       │   ├── RolesUsuariosNombre.js
+│       │   ├── Sucursales.js
+│       │   └── VerificaReferenciaActiva.js
+│       ├── email_templates
+│       │   ├── action.html
+│       │   ├── alert.html
+│       │   ├── billing.html
+│       │   ├── img
+│       │   └── styles.css
+│       ├── expand.gif
+│       ├── font-awesome
+│       │   ├── css
+│       │   └── fonts
+│       ├── fonts
+│       │   ├── fontawesome-webfont.eot
+│       │   ├── fontawesome-webfont.svg
+│       │   ├── fontawesome-webfont.ttf
+│       │   ├── fontawesome-webfont.woff
+│       │   ├── fontawesome-webfont.woff2
+│       │   ├── FontAwesome.otf
+│       │   ├── glyphicons-halflings-regular_1.eot
+│       │   ├── glyphicons-halflings-regular_1.ttf
+│       │   ├── glyphicons-halflings-regular_1.woff
+│       │   ├── glyphicons-halflings-regular_1.woff2
+│       │   ├── glyphicons-halflings-regular.eot
+│       │   ├── glyphicons-halflings-regular.svg
+│       │   ├── glyphicons-halflings-regular.ttf
+│       │   ├── glyphicons-halflings-regular.woff
+│       │   ├── glyphicons-halflings-regular.woff2
+│       │   └── glyphicons-halflings-regulard41d.eot
+│       ├── images
+│       │   ├── background_border_bottom.gif
+│       │   ├── bg_gradient.gif
+│       │   ├── level1_selected-1lvl.jpg
+│       │   ├── masthead.png
+│       │   ├── pbdis.png
+│       │   ├── pbena.png
+│       │   ├── pbmou.png
+│       │   ├── pbsel.png
+│       │   ├── pname.png
+│       │   ├── primary-enabled.gif
+│       │   ├── primary-roll.gif
+│       │   ├── secondary-enabled.gif
+│       │   ├── tbsel.png
+│       │   └── tbuns.png
+│       ├── img
+│       │   ├── consorc.png
+│       │   ├── consorcio.png
+│       │   ├── encuestaFicha_ops2.png
+│       │   ├── encuestaFicha.png
+│       │   ├── encuestaFicha2.png
+│       │   ├── ficharDatosPersonal.png
+│       │   ├── procesando.gif
+│       │   ├── procesando2.gif
+│       │   ├── procesando2.png
+│       │   ├── UnderConstruct.jpg
+│       │   ├── User.png
+│       │   ├── User2.png
+│       │   └── User3.png
+│       ├── item.gif
+│       ├── java
+│       │   └── com
+│       ├── js
+│       │   ├── bootstrap.js
+│       │   ├── bootstrap.min.js
+│       │   ├── demo
+│       │   ├── highcharts
+│       │   ├── inspinia.js
+│       │   ├── jquery-2.1.1.js
+│       │   ├── jquery-3.1.1.min.js
+│       │   ├── keycloak.js
+│       │   ├── keycloak2.js
+│       │   ├── plugins
+│       │   └── sweetalert.min.js
+│       ├── keycloak.json
+│       ├── og.gif
+│       ├── resources
+│       │   └── META-INF
+│       ├── templates
+│       │   ├── actividadContactos_24092019.html
+│       │   ├── actividadProspectos_24092019.html
+│       │   ├── cargarExcel_24092019.html
+│       │   ├── prospectos_24092019.html
+│       │   ├── prospectosCol_24092019.html
+│       │   ├── referidos_24092019.html
+│       │   ├── referidosCol_24092019.html
+│       │   ├── referidosMantenedor_24092019_2.html
+│       │   ├── referidosMantenedor_24092019.html
+│       │   ├── tableprueba_24092019.html
+│       │   └── updateReagendar.html
+│       ├── test-resbeans.css
+│       ├── test-resbeans.js
+│       ├── test-services.html
+│       ├── WEB-INF
+│       │   ├── beans.xml
+│       │   ├── glassfish-resources.xml
+│       │   ├── glassfish-web.xml
+│       │   └── web.xml
+│       └── webapp
+│           ├── index.html
+│           └── WEB-INF
+├── target
+│   ├── classes
+│   │   ├── com
+│   │   │   └── cox
+│   │   └── META-INF
+│   │       └── persistence.xml
+│   ├── generated-sources
+│   │   └── annotations
+│   ├── maven-archiver
+│   │   └── pom.properties
+│   ├── maven-status
+│   │   └── maven-compiler-plugin
+│   │       └── compile
+│   ├── referidos2intento-1.0
+│   │   ├── index.html
+│   │   ├── META-INF
+│   │   └── WEB-INF
+│   │       ├── beans.xml
+│   │       ├── classes
+│   │       ├── glassfish-web.xml
+│   │       └── web.xml
+│   └── referidos2intento-1.0.war
+└── tree.txt
+
+46 directories, 159 files

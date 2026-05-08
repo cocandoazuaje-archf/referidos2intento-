@@ -14,20 +14,20 @@ angular
         $resource, Auth) {
 
         //coxrestaurar poner arriba de ultimo en controller
-        //, Auth
-
+        //, Auth 
+ 
         // Auth
         var vm = this;
-        vm.usuario = '';
+        vm.usuario = 'expart721';
         vm.filtroPrioridad=false;
 
-        //coxrestaurar
+        //coxrestaurar 
         //vm.usuario = 'exitcs17';
-
+        
         //vm.usuario = 'aeastorg';
 
-        //vm.usuario = 'aeastorg';
-        //vm.usuario = 'rentpriv';
+        //vm.usuario = 'aeastorg'; 
+        //vm.usuario = 'rentpriv'; 
         //vm.token = Auth.token;
 
 
@@ -36,13 +36,13 @@ angular
         // console.log("*******************");
         // console.log("*******************");
         // console.log(vm.usuario);
-        // console.log("*******************");
+        // console.log("*******************"); 
         // console.log("*******************");
         // console.log(vm.usuario);
         // console.log("*******************");
 
 
-        vm.rollUsuario = "";
+        vm.rollUsuario = "adm";
         vm.dobleRoll = false;
         vm.old_rut = "";
         vm.canalDigital = [];
@@ -1041,7 +1041,7 @@ angular
             var xlsHeader = [
 
                 "CODSUCURSAL",
-                //"VERSION",
+                //"VERSION", 
                 "SUCURSAL",
                 "DIRECCION",
                 "COMUNA",
@@ -2390,7 +2390,7 @@ angular
 
 
         //aca bitacora
-        vm.crearBitacoraDeFicha = function () {
+        vm.crearBitacoraDeFicha = function () { 
             vm.bitacoraFicha = [];
             vm.bitacoraFicha.version = "1";
             vm.bitacoraFicha.fecha = new Date();
@@ -2399,7 +2399,7 @@ angular
             vm.bitacoraFicha.comentarios = "COMPLETAR FICHA -> Se ha editado datos de la ficha del referido.";
 
             vm.bitacora = new Bitacoras(vm.bitacoraFicha);
-
+            
             vm.bitacora.referenciaId.prioritario = (vm.bitacora.referenciaId.prioritario) ? true : false;
             vm.bitacora.referenciaId.referidoId.afp = (vm.bitacora.referenciaId.referidoId.afp) ? vm.bitacora.referenciaId.referidoId.afp : '';
             vm.bitacora.referenciaId.referidoId.prima = (vm.bitacora.referenciaId.referidoId.prima) ? vm.bitacora.referenciaId.referidoId.prima : '';
@@ -2633,20 +2633,20 @@ angular
                 // para supervisores & ejecutivos
                 if (vm.dobleRoll || vm.rollUsuario == 'usr') {
                     ficha.OWNERE = vm.usuario;
-                    if (vm.getNombreEjecutiva(vm.usuario) != undefined)
-                    {
-                        ficha.OWNERENAME = vm.getNombreEjecutiva(vm.usuario).nombre;
-                    }
+					if (vm.getNombreEjecutiva(vm.usuario) != undefined)
+					{
+						ficha.OWNERENAME = vm.getNombreEjecutiva(vm.usuario).nombre;
+					}
                 }
 
                 // para asistentes
                 if (vm.rollUsuario == 'ast') {
                     ficha.OWNERE = vm.usuarioEsAsistenteDe2String;
-                    console.log(" *********** paso asistente");
-                    if (vm.getNombreEjecutiva(vm.usuarioEsAsistenteDe2String) != undefined)
-                    {
-                        ficha.OWNERENAME = vm.getNombreEjecutiva(vm.usuarioEsAsistenteDe2String).nombre;
-                    }
+					console.log(" *********** paso asistente");
+					if (vm.getNombreEjecutiva(vm.usuarioEsAsistenteDe2String) != undefined)
+					{
+						ficha.OWNERENAME = vm.getNombreEjecutiva(vm.usuarioEsAsistenteDe2String).nombre;
+					}
                 }
 
 
@@ -2715,7 +2715,7 @@ angular
             } else {
                 vm.continuar5();
             }
-            // validando referencia activa del rut
+            // validando referencia activa del rut            
 
         };
         //acaguardar
@@ -3000,14 +3000,14 @@ angular
 
         vm.fDerivarMasivoList = function () {
             if (!vm.hayItemsParaDerivar) {
-                console.log("fDerivarMasivoList no hay items para derivar");
+				console.log("fDerivarMasivoList no hay items para derivar");
                 vm.fDerivarMasivo();
                 return;
             }
 
             window.scrollTo(0, 0);
             vm.mostrarLoading = true;
-            //console.log("deriva 1");
+			//console.log("deriva 1");
             //console.log(JSON.stringify(vm.derivarMasivoList));
 
 
@@ -3051,8 +3051,8 @@ angular
             var bEjecutiva = JSON.parse(vm.ejecutivosSelect).id;
 
             var sup = (vm.usuarioSupervisaA2String == undefined) ? "undefined" : vm.usuarioSupervisaA2String;
-
-            console.log(JSON.stringify({
+			
+			console.log(JSON.stringify({
                 "usr": vm.usuario,
                 "id": bSearch,
                 "eje": bEjecutiva,
@@ -3183,14 +3183,14 @@ angular
 
             vm.cargarFicha2(ref);
 
-            if (vm.ficha.CANALNAME != undefined)
-            {
-                if (vm.ficha.CANALNAME.toUpperCase() == 'MANUAL PENSIONADO') {
-                    vm.fverEncuesta1();
-                } else {
-                    vm.fverEncuesta2();
-                }
-            }
+			if (vm.ficha.CANALNAME != undefined)
+			{
+				if (vm.ficha.CANALNAME.toUpperCase() == 'MANUAL PENSIONADO') {
+					vm.fverEncuesta1();
+				} else {
+					vm.fverEncuesta2();
+				}
+			}
 
 
 
@@ -3273,7 +3273,7 @@ angular
                 function (res) {
                     toastr.success("Referencias actualizadas con exito.", "Ok")
 
-                    //
+                    // 
                     //console.log(" ** referencias Ok ->");
                     //console.log(res);
                     vm.messageActividad.comentarios = '';
@@ -3479,7 +3479,7 @@ angular
                 "USUARIO": vm.usuario,
                 "COMENTARIOS": "DERIVAR -> Actividad Derivada a ejecutivo : " + vm.ejecutivosSelect.nombre + ", sucursal : " + vm.ejecutivosSelect.sucursalId.nombre
             }));
-            //console.log("deriva 2");
+			//console.log("deriva 2");
                         //console.log(JSON.stringify(vm.derivarMasivoList));
 
 
@@ -3653,7 +3653,7 @@ angular
 
                 //console.log(" ** ReferenciasReagendadas Ok ->");
                 //console.log(res);
-                //
+                // 
 
                 vm.ahora = new Date();
                 vm.ReferenciasReagendadasTodoEje = res;
@@ -3678,7 +3678,7 @@ angular
 
                 //console.log(" ** ReferenciasReagendadas Ok ->");
                 //console.log(res);
-                //
+                // 
 
                 vm.ahora = new Date();
                 vm.ReferenciasReagendadas = res;
@@ -3711,7 +3711,7 @@ angular
 
                 //console.log(" ** ReferenciasReagendadas Ok ->");
                 //console.log(res);
-                //
+                // 
                 vm.ahora = new Date();
                 vm.ReferenciasReagendadas = res;
                 vm.activarTabla();
@@ -3871,7 +3871,7 @@ angular
 
             vm.referencias.$update({},
                 function (res) {
-                    //
+                    // 
                     //console.log(" ** referencias Ok ->");
                     //console.log(res);
 
@@ -4093,7 +4093,7 @@ angular
             vm.ReferenciasNoCerradas = null;
             vm.verTabla = true;
             vm.mostrarLoading = false;
-
+            
 
 
         }
@@ -4155,7 +4155,7 @@ angular
 
                     //console.log(" ** RolesUsuariosNombre Ok ->");
                     //console.log(res);
-                    // vm.rollUsuario = res.rol;
+                    // vm.rollUsuario = res.rol;                   
 
                     if (vm.rollUsuario == "adm" || vm.rollUsuario == "sup") {
                         vm.cargarPanel();
@@ -4652,7 +4652,6 @@ angular
 
        // coxrestaurar
        Auth.loadUserInfo().success(function(userInfo) {
-        alert("entro");
            vm.mailUsuario = userInfo.email;
            vm.usuario = userInfo.preferred_username;
            vm.usuarioname = userInfo.name;

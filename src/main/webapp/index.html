@@ -1,53 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" ng-app="app">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8">
-  <title>AngularJS Dependiente de CDN v1.2</title>
+    <!-- TÍTULO -->
+    <title>Sistema Referidos RRVV</title>
 
-  <!-- 🔴 DEPENDE DE ESTA URL -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- ===================== CSS ===================== -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet" />
+    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="css/animate.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/plugins/clockpicker/clockpicker.css" rel="stylesheet" />
+    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet" />
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet" />
+    <link
+      href="css/plugins/touchspin/jquery.bootstrap-touchspin.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet" />
+    <link href="css/highcharts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="angular/angular-material.min.css" />
 
-  <style>
-    body {
-      font-family: Arial;
-      padding: 20px;
-    }
+    <!-- ===================== JS BASE ===================== -->
+    <script src="js/keycloak2.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
 
-    .box {
-      padding: 15px;
-      background: #f3f3f3;
-      border-radius: 10px;
-    }
-  </style>
-</head>
+    <!-- ===================== ANGULAR (SOLO UNA VERSIÓN) ===================== -->
+    <script src="angular/angular.js"></script>
+    <script src="angular/angular-animate.min.js"></script>
+    <script src="angular/angular-aria.min.js"></script>
+    <script src="angular/angular-messages.min.js"></script>
+    <script src="angular/angular-material.min.js"></script>
 
-<body ng-controller="MainCtrl">
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
 
-  <h1>AngularJS depende del CDN v2.0</h1>
+      .box {
+        padding: 15px;
+        background: #f3f3f3;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
 
-  <div class="box">
-    <button ng-click="check()">
-      Probar AngularJS
-    </button>
+  <body ng-controller="MainCtrl">
+    <div id="wrapper" style="background-color: #cc0001">
+      <h1>AngularJS funcionando correctamente v1.11</h1>
 
-    <p>{{ message }}</p>
-  </div>
+      <div class="box">
+        <button ng-click="check()">Probar AngularJS</button>
+        <p>{{ message }}</p>
+      </div>
+    </div>
+      <a href="../../../deploy.sh"></a>
 
-  <script>
-    // Si AngularJS NO carga desde la URL, esto NO funciona
-    angular.module('app', [])
-      .controller('MainCtrl', function($scope) {
-
+    <!-- ===================== ANGULAR APP ===================== -->
+    <script>
+      // IMPORTANTE: NO recrear el módulo si ya existe en app.js
+      angular.module("app").controller("MainCtrl", function ($scope) {
         $scope.message = "";
 
-        $scope.check = function() {
-          $scope.message = "AngularJS está funcionando desde CDN 🚀";
-          alert("AngularJS ejecutado correctamente");
+        $scope.check = function () {
+          $scope.message = "AngularJS está funcionando correctamente 🚀";
+          alert("AngularJS OK");
         };
-
       });
-  </script>
+    </script>
 
-</body>
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="js/plugins/clockpicker/clockpicker.js"></script>
+    <script src="js/plugins/fullcalendar/moment.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script src="angular/angular-ui-utils.min.js"></script>
+    <script src="angular/angular-resource.js"></script>
+    <script src="angular/angular-route.js"></script>
+    <script src="angular/angular-cookies.js"></script>
+    <script src="angular/angular-js-xlsx.js"></script>
+    <script src="angular/xlsx.core.min.js"></script>
+
+    <script src="js/sweetalert.min.js"></script>
+    <script src="app.js"></script>
+    <script src="js/plugins/toastr/toastr.min.js"></script>
+
+    <script src="js/plugins/steps/jquery.steps.min.js"></script>
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script src="js/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+    <script src="js/highcharts/highcharts.js"></script>
+    <script src="js/highcharts/exporting.js"></script>
+    <script src="js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- DOMAIN -->
+    <script src="src/main/webapp/domain/Sucursales.js"></script>
+    <!-- <script src="domain/Bitacoras.js"></script>
+    <script src="domain/BitacorasByReferencia.js"></script>
+    <script src="domain/ReferenciasNoCerradas.js"></script>
+    <script src="domain/DerivarMasivo.js"></script>
+    <script src="domain/Referencias.js"></script>
+    <script src="domain/ReferenciasReagendadas.js"></script>
+    <script src="domain/Canales.js"></script>
+    <script src="domain/Ejecutivos.js"></script>
+    <script src="domain/Referidos.js"></script>
+    <script src="domain/ReferenciasNoCerradasFull.js"></script>
+    <script src="domain/RolesUsuariosNombre.js"></script>
+    <script src="domain/RolesUsuarios.js"></script>
+    <script src="domain/VerificaReferenciaActiva.js"></script>
+    <script src="domain/ImportarReferidos.js"></script>
+    <script src="domain/ImportarSucursalesEjecutivos.js"></script>
+    <script src="domain/ImportarSucursales.js"></script>
+    <script src="domain/ImportarRolesUsuarios.js"></script>
+    <script src="domain/Acciones.js"></script>
+    <script src="domain/ActualizarReferidosSi.js"></script>
+    <script src="domain/ActualizarReferidosNo.js"></script>
+    <script src="domain/ReferenciasReagendadasFull.js"></script>
+    <script src="domain/ExportarDatatable.js"></script>
+    <script src="domain/ExportarReferidos.js"></script>
+    <script src="domain/PanelTotales.js"></script>
+
+    <script src="controllers/todoController.js"></script>
+    <script src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script> -->
+
+    <!-- TOASTR CONFIG -->
+    <script>
+      $(function () {
+        toastr.options = {
+          closeButton: true,
+          progressBar: true,
+          positionClass: "toast-top-right",
+          timeOut: "2000",
+        };
+      });
+    </script>
+  </body>
 </html>

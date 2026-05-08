@@ -1,0 +1,34 @@
+ <div  class="col-lg-3"  ng-repeat="ref in vm.Referencias">
+                            <div  class="marca contact-box center-version">
+
+                                <a href="#" ng-click="vm.mostrarActividades(ref)">
+
+                                    <img alt="image" class="img-circle" src="img/User.png">
+
+
+                                    <h3 class="m-b-xs"><strong>{{ref.referidoId.nombre.substr(0, 10)}}</strong></h3>
+
+                                    <div class="font-bold">Rut: <br> {{(ref.referidoId.rut=='') ? '2455879': ref.referidoId.rut}}</div>
+                                    <address class="m-t-md">
+                                        <strong>{{(ref.referidoId.region=='') ? 'Santiago Centro': ref.referidoId.region.substr(0,10)}}</strong><br>
+                                        {{(ref.referidoId.calle=='') ? 'San Miguel 445': ref.referidoId.calle.substr(0,10)}}<br>Telefs: 
+                                        {{(ref.referidoId.telefonos=='') ? '2566877' : ref.referidoId.telefonos}} <br> Correo: 
+                                        {{(ref.referidoId.correo=='') ? 'user@gmail.com' : ref.referidoId.correo}}
+                                    </address>
+                                    <br>
+                                    <p><i class="fa fa-phone"> </i> {{(ref.canalId.nombre=='') ? 'Campaña': ref.canalId.nombre}} <br>
+                                        <i class="fa fa-headphones"> </i> {{(ref.ejecutivoId.nombre=='') ? 'Ejecutiva' : ref.ejecutivoId.nombre}}</p>
+
+                                </a>
+                                <div class="contact-box-footer">
+                                    <div class="m-t-xs btn-group">
+                                       <!--  <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call </a>
+                                        <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a> -->
+                                        <!-- <a class="btn btn-xs btn-white"><i class="fa fa-check-square-o"></i> Follow</a>
+                                         -->
+                                         <button ng-click="vm.mostrarActividades(ref)" class="btn {{(ref.accionId.id==1) ? 'btn-default' : (ref.accionId.id==2) ? 'btn-primary' : (ref.accionId.id==3) ? 'btn-warning' : 'btn-danger'}} btn-outline btn-block" type="button"><i class="fa {{(ref.accionId.id==1) ? 'fa-comment-o' : 'fa-comments' }}"> </i> {{ref.accionId.nombre}}</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
